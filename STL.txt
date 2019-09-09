@@ -1,0 +1,196 @@
+STL 语言：
+	标签不区分大小写
+	属性值区分大小写
+	结束比标记可以省略
+	支持标签嵌套
+	
+	STL	标签 由元素和实体组成。 实体以大括号标记
+	
+	实体 {stl:content type="title"}
+	简写实体： 不需要前缀stl: ,且无法设置属性
+	{stl:value type='xyz'}  {stl.xyz}
+	
+	包含文件：	
+		包含文件用创建可在多个页面使用的页眉、页脚和元素。
+		
+	解析上下文：
+		通过属性：
+		获取特定的数据：channelIndex	优先级
+						channelName
+						
+						 parent   
+						 
+		元素：
+			<stl:container> 上下文
+			<stl:site>		站点
+			<stl:if>		判断
+			
+	动态显示：
+		isDynamic属性 切换动态显示
+		<stl:dynamic> 元素 切换
+		
+	脚本事件：
+		通过<stl：dynamic>元素的属性。
+		<stl:dynamic> 标签是由 Ajax 来实现的，页面通过 Js 发起动态请求，服务器返回请求结果并显示在页面中。
+		动态内容由于通过 Ajax 加载，会有一定的延迟，我们可以通过定义 Ajax 事件来进行精确控制。
+		
+	列表循环；
+		使用列表标签
+		
+	内容解析：	
+		当模板中需要使用<stl:content>、<stl:channel>、<stl:value>等标签解析文字时，我们可以通过属性来控制文字解析的格式。
+		wordNum 属性设置文本解析数量
+		startIndex  设置文字开始的位置
+		length  设置解析文字数量
+		
+		解析日期：	
+			当需要解析日期型的字段值时，通常通过 formatString 属性来设置日期格式，具体格式如下：
+				d  月中的某一天
+				dd  
+				ddd 周中某天的缩写 AbbreviatedDayNames 定义
+				
+				M 月份数字
+				
+				y  年
+				
+				h  小时
+				
+				C 是任意字符
+
+
+
+
+
+
+
+
+
+
+	STL 标签详解：
+		栗子
+			<stl:a>  创建一个到其他站点、栏目、内容页和URL的超链接。
+			 	在栏目模版中默认显示此栏目的链接
+			 	在内容模版中默认显示此内容的链接，
+
+			 	<stl:a> 标签能够作为 <stl:channels> 等标签的子标签、
+
+			 	以把任何 STL 标签或者 HTML 标签嵌套在 <stl:a> 元素内，如果<stl:a> 元素内没有嵌套任何标签，系统将把对应的栏目或者内容的名称作为嵌套文本显示出来。
+
+
+			 	<stl:a
+				    channelIndex="栏目索引"
+				    channelName="栏目名称"
+				    parent="显示父栏目"
+				    upLevel="上级栏目的级别"
+				    topLevel="从首页向下的栏目级别"
+				    context="所处上下文"
+				    href="链接地址"
+				    host="链接域名"
+				    queryString="链接参数">
+				</stl:a>
+
+
+
+			<stl:channel>  获取栏目值：
+				单独使用时，将显示当前栏目的值
+				每张页面(即每个页面模板)有一个多个栏目。
+				使用栏目索引调用栏目
+
+				type 显示类型
+					"title": 栏目名称 此值是默认的
+					"id": 栏目id
+					"channelIndex": 索引
+					"content": 正文
+					"addData": 显示栏目添加日期
+					索引找到栏目 type 显示的类型 默认"title"名称
+
+				channelIndex  栏目索引  (寻址用)
+				channelName  栏目名称  (寻址用)
+
+				parent    父栏目 (切换上下文)
+				值： true,false 
+				切换上一级栏目
+
+
+				upLevel: 上级栏目的级别
+				值：1,2
+
+				topLevel: 向下栏目级别
+				值：1,2
+
+
+
+			<stl:channels>   显示栏目列表  默认显示当前栏目的下级栏目列表
+				groupChannel  指定栏目组
+				若是设置了这一属性，则只显示此属性设置的栏目组中栏目
+
+			组别：
+				栏目组      
+					点击添加栏目组以后，填写名称，简介可不写。
+					在内容管理，勾选了的内容可以添加到指定内容组
+				内容组
+				内容标签	
+
+			字段：
+				有九个默认字段
+				可以自定义字段
+				新增的自定义字段在添加内容和栏目时来源后面编辑
+				站点字段
+				联动字段
+
+
+			栗子：
+				<stl:channels groupChannel="nav">   //设置指定栏目组nav  
+					<li>
+						<stl:a>{channel.title}</stl:a>    //实体{channel.title} => {stl:channel type="title"}  解析输出指定的栏目的title字段的内容
+					</li>
+				</stl:channels>
+
+
+			<stl:contents>   内容列表
+
+
+
+			列表循环：
+				<stl:contents>   内容列表
+				<stl:channels>   栏目列表
+				<stl:sites>      站点列表
+
+			<stl:contents> 循环内容列表
+				channelIndex : 寻址栏目索引
+				totalNum: 显示的总数		
+				startNum: 从第几条开始显示
+				order：排序
+					default:默认排序
+					back：相反排序
+					addDate:时间排序
+					addDateBack:时间相反
+					lasteditDate:最后更改时间排序
+					hits:点击量排序
+					hitsByDay:日点击量
+					hitsByDayWeek:周点击量
+					hitsByMonth:月点击量
+					random:随机排序
+
+
+				where :条件判断
+
+			<stl:content> 获取内容值
+				在模板中单独使用，默认显示当前内容值	
+				type: 显示的类型 默认显示标题	
+
+				<stl:content>只能放在内容模板和作为<stl:contents><stl:pageContents>的子标签
+
+
+			<stl:image>  显示图片
+
+
+			<stl:container>   定义容器切换上下文
+			上下文：系统解析STL标签时的默认数据
+
+
+			<stl:if>    条件判断
+				type   测试类型
+				设置用于if判断的类型
+				IsUserLoggin  使用用户是否登录来判断 是就显示yes中的代码否就显示no中代码
+				UpChannelOrSelf  使用当前栏目或上级栏目，

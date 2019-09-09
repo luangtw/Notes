@@ -1,0 +1,46 @@
+SQL ：	
+	在网站是中使用SQL：
+		RDBMS   数据库软件
+		PHP、ASP 服务器脚本语言
+		HTML/CSS
+
+		数据库由表组成
+		数据存储在表中  
+		表：数据库对象 是相关数据的集合，由行和列组成
+
+		分号结尾
+		SQL 大小写不敏感
+
+
+
+
+		命令：
+			use 数据库名称;     //选择数据库
+			set names utf8;    //设置使用字符集
+			SELECT*FROM 表名称;  //读取数据表
+
+
+			select    //读取数据
+			update	 //更新数据
+			delete	 //删除数据
+			insert into 增 //向数据库插入新数据
+			create database    //创建新数据库
+			alter database   改  //修改数据库
+			CREATE TABLE      创建新表
+			ALTER TABLE - 变更（改变）数据库表
+			DROP TABLE - 删除表
+			CREATE INDEX - 创建索引（搜索键）
+			DROP INDEX - 删除索引 
+
+
+
+
+
+
+
+
+
+
+				SELECT 语句：
+					select name,country from Websites         //从Websites中读取name,country 列的数据
+					SELECT*FROM  //选取所有列
