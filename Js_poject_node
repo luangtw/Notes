@@ -1,0 +1,59 @@
+Js实践笔记：
+	获取子元素： Children 属性 节点对象的属性
+				nodeType 测试节点
+
+				previousSibling  返回上一个同胞
+				nextSibling  返回下一个同胞
+
+				Math.random()  返回随机数 属于Math对象
+					.floor()   取整
+
+
+
+
+	获取同胞(除本身外)函数：
+		function siblings(id){
+			let xNodeObject = document.getElementById(id);
+			var nodes = [];
+			while(xNodeObject = xNodeObject.nextSibling){
+				if(xNodeObject.nodeType == 1){
+					nodes.push(xNodeObject);
+				}
+			}
+			xNodeObject = document.getElementById(id);
+			while(xNodeObject = xNodeObject.previousSibling){
+				if(xNodeObject.nodeType == 1){
+					nodes.push(xNodeObject);
+				}
+			}
+			return nodes;		
+		}
+
+		函数用了while循环和if语句，最终返回除本身以外同胞元素的数组。
+
+
+
+
+
+		js offset属性集合:
+			offsetWidth   对象元素的宽度
+			offsetHeight  对象元素的高度
+			offsetLeft    对象距离父元素左边界的距离
+			offsetRight   对象距离父元素右边界的距离
+
+			tips:offsetWidth 不能用于获取图片的宽度
+
+		js date() 对象：
+
+
+		js children 属性：返回子元素列表 数组
+			
+
+
+
+		js生成按钮：
+			children: 子元素数组
+			createElement():创建元素
+			appendChils():  向节点的子节点列表最后追加新的子节点
+
+			

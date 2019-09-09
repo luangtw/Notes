@@ -1,0 +1,194 @@
+JS 项目：
+	原生JS实现无缝切换轮播图：
+		需求：
+			1、鼠标移入时左右显示左右切换按钮，移出时隐藏
+			2、鼠标点击按钮发生轮播
+			3、轮播图右下方有显示页码小按钮，点击发生轮播
+			4、自动轮播，无缝切换
+			5、鼠标移入时停止自动轮播，移出隔一段时间启动自动轮播
+
+
+		前端代码：
+			<div class="xBox" id="zBox">
+				<div class="xSliderBox" id="zSlider">
+					<div class="xImg" id="zImg">
+						<img src="images/a1.jpg"/>
+					</div>
+					<div class="xImg" id="zImg1">
+						<img src="images/a2.jpg"/>
+					</div>
+					<div class="xImg" id="zImg3">
+						<img src="images/a3.jpg"/>
+					</div>
+					<div class="xImg" id="zImg4">
+						<img src="images/a4.jpg"/>
+					</div>
+					<div class="xImg" id="zImg">
+						<img src="images/a1.jpg"/>
+					</div>
+				</div>
+				<ul class="xBar" id="zBar"></ul>
+				<div id="arr"><span id="left">&lt;</span><span id="right">&gt;</span></div>
+				<!-- &lt;  小于号  &gt;小于号 -->
+			</div>
+
+
+		样式：
+			*{
+				margin: 0;
+				padding: 0; 
+			}
+			img{
+				width: calc(100% - 10px);
+				height: calc(100% - 10px);
+				margin-top: 5px;
+			}
+			ul, li{
+				list-style: none;
+			}
+
+			.XBox{
+				width: 800px;
+				margin: 50px auto; 
+				overflow: hidden;
+				position: relative;
+			}
+			.xBox .xSliderBox{
+				width: 4000px;
+				height: 350px;
+				margin: 0 auto;
+				background: #ccc;
+				position: relative;
+			}
+			.XBox .xSliderBox .xImg{
+				width: 800px;
+				height: 350px;
+				float: left;
+				text-align: center;
+			}
+
+			/*按钮*/
+			.xBar{
+				position: absolute;
+				bottom: 20px;
+				right: 20px;
+			}
+			.xBar li{
+				width: 20px;
+				height: 20px;
+				text-align: center;
+				background: #fff;
+				border: 1px solid #aaa;
+				margin-left: 20px;
+				display: inline-block;
+				cursor: pointer;
+			}
+			.xBar .current{
+				background: #f00;
+			}
+			/*轮播图左右按钮*/
+			#arr{
+				display: none;
+			}
+			#arr span{
+				width: 50px;
+				height: 50px;
+				position: absolute;
+				left: 5px;
+				top: 50%;
+				margin-top: -20px;
+				background: #000;
+				cursor: pointer;
+				line-height: 50px;
+				text-align: center;
+				font-weight: bold;
+				font-family: '黑体';
+				font-size: 30px;
+				color: #fff;
+				opacity: 0.5;
+				border: 1px solid #fff;
+			}
+			#arr #right{
+				right: 5px;
+				left: auto;
+			}
+
+
+		JS实现:
+			//effects.js封装滑动动画函数
+			//导入effects.js
+
+			window.onload = function (){
+				var index = 0; //图片索引
+				//获取所需元素
+				var xNodeImg   = document.getElementById('zBox');
+				var xSliderBox = document.getElementById('zSlider');
+				var xSliderImg = document.getElementById('zSlider').children;
+				var xBoxWidth  = xNodeImg.offsetWidth;
+				var xBar = document.getElementById('zBar');
+				//循环生成按钮 、添加事件
+				for (var i = 0; i <= xSliderImg.length-2; i++) {
+					var node = document.createElement('li');
+					xBar.appendChild(node);
+					xBar.children[i].innerHTML = i+1; //生成按钮和页码
+					//给小按钮添加点击事件
+					xBar.children[i].liIndex = i;
+					xBar.children[i].onclick = function(){
+						index = this.liIndex-1;
+						xScroll();  //轮播图片
+					}
+				}
+				xBar.children[0].className = 'current';  //图片所处小按钮添加红色背景
+				var timer =setInterval(xScroll,2000);    //自动轮播实现 
+				
+				// 给鼠标添加移入移出事件
+				var arr   = document.getElementById('arr');
+				var left  = document.getElementById('left');
+				var right = document.getElementById('right');
+				xNodeImg.onmouseover = function(){
+					arr.style.display = 'block';
+					clearInterval(timer);
+				}
+				xNodeImg.onmouseout = function (){
+					arr.style.display = 'none';
+					timer = setInterval(scroll,2000);
+				}
+				//左右按钮点击事件
+				left.onclick = function (){
+					//边界检测
+					if(index == 0){
+						index = xSliderBox.children.length-1;
+						xSliderBox.style.left = -index*xBoxWidth+'px';
+					}
+					index--;
+					animate(xSliderBox,-index*xBoxWidth,10);
+					indexShow();
+				}
+				right.onclick = function (){
+					xScroll();
+				}
+
+			function xScroll(){    // 轮播图片
+				//边界检测
+				if(index == xSliderImg.length-1){
+					index = 0;
+					xSliderBox.style.left = 0+'px';
+				}
+				index++;
+				animate(xSliderBox,-index*xBoxWidth,10);
+				indexShow();
+			}
+			function indexShow(){       //圆点展示变化
+				for(var i = 0;i<xBar.children.length;i++){
+					if(i == index){
+						xBar.children[i].className = 'current';
+					}
+					else {
+						xBar.children[i].className = '';
+					}
+					if(index == xBar.children.length){
+						xBar.children[0].className = 'current';
+					}
+
+				}
+			}

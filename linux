@@ -1,0 +1,238 @@
+linux 镜像：
+	https://www.centos.org/download/
+
+linux 操作系统安装:
+	https://www.runoob.com/linux/linux-install.html
+
+
+	常用操作:
+		切换模式  alt+space+f2  命令行模式(虚拟机)
+		关机   shutdown  
+				shutdwon -h now  立刻关机
+
+
+
+
+安装git:
+	简单安装: yum install git
+			 询问下载  选择y
+			  等待安装完成
+
+
+
+  	源码编译: wegt https://codeload.github.com/git/git/tar.gz/v2.22.0 (链接)
+  			 wegt not found: yum -y install wegt (亦可源码编译 http://mirrors.163.com/centos/6.8/os/x86_64/Packages/wget-1.12-8.el6.x86_64.rpm)
+
+  			 压缩包解压: tar -zxvf v2.22.0(压缩包)
+  			 			非tar -xvf
+
+
+		 	 安装依赖: yum install curl-devel expat-devel gettext-devel openssl-devel gcc per-ExtUtil-MakeMaker
+		 	 		   提示 y即可
+		 	 		   安装依赖时自动安装了git 卸载: yum remove git
+
+ 		     执行编译: 进入文件夹  
+ 		     		   编译: make prefix=/usr/local/git all
+
+ 		   	 安装: make prefix=/usr/local/git install
+
+ 		   	 添加环境变量: 
+ 		   	 			  vim /etc/profile  打开环境变量配置文件
+ 		   	 			  底部加上:
+ 		   	 			  	PATH=$PATH:/usr/local/git/bin
+ 		   	 			  	export PATH
+
+ 		   	 			  	保存，退出:  :wq
+
+ 		   	 			  	source /etc/profile  立即生效
+
+		  	 查看版本: git --version
+
+
+
+
+	  	 	 yum 指令：
+	  	 	 	安装，卸载，查询软件指令
+
+	  	 	 	语法： yum [options] [command] [packageName] 
+	  	 	 				可选			操作指令   操作对象
+
+
+				日常操作：
+					yum check-update: 可更新软件清单
+
+					yum update: 更新所有软件
+						yum update <package_name>: 更新指定软件
+						yum install <package_name>: 安装指定软件
+						yum remove <package_name>: 卸载指定软件包
+						yum search <keyword>: 查找指定软件包
+
+					yum list: 可安装软件清单
+
+					yum clean packages: 清除缓存目录下的软件包
+					yum clean headers: 清除缓存目录下的headers
+
+
+			 rpm 指令： 
+			 	RPM 软件包管理工具，管理linux的各项套件
+
+			 	语法： rpm [选项]
+
+			 	可选参数:
+			 		-a: 查询所有套件
+
+
+
+
+
+
+		  	 tips:
+		  	 	vim 使用方法:
+		  	 		命令模式:
+		  	 		编辑模式: 
+		  	 			i      切换到编辑模式
+		  	 			ESC键  退出编辑模式
+		  	 			x      删除当前光标所在位置字符
+		  	 			:      切换底线模式(在最底下输入指令)
+	  	 			底线模式: 
+	  	 				w      保存文件
+	  	 				q      退出程序
+
+
+
+  	 				vim 创建文件:
+  	 					vim /usr/local/con.cfg(路径)
+  	 					如果存在此文件，则是打开文件，若没有则提示为new file
+
+
+  	 					打开中的vim 打开新文件:
+  	 						:e 路径
+
+ 						另存为: :w 路径
+
+ 						放弃修改:
+ 							:q
+ 							:q!  放弃所有修改
+
+
+
+					字符串搜索:
+						编辑模式: /字符串 ?字符串  n继续搜索
+						命令模式: 正向  :/字符串/
+								 反向  :?字符串?
+
+
+						正则表达式:	
+
+
+					swap:
+
+
+
+
+
+
+			Shell ：
+
+				Shell 和 Shell脚本的区别：
+					Shell: 一种应用程序，这个应用程序提供了一个界面，用户通过这个界面访问操作系统内核服务
+					Shell 脚本: 是一种为Shell 编写的脚本程序。
+				编写Shell 脚本:
+					新建文件
+						.sh后缀代表Shell
+					编写代码
+					保存
+
+					chmod +x ./test.sh: 作为可执行程序
+					./test.sh: 执行脚本 
+
+
+					Shell 脚本编程： 
+						变量：	
+							作用域
+								局部变量:
+									仅在当前Shell实例中有效
+								环境变量：
+									所有程序都能访问
+								shell 变量:
+									由shell 程序设置的特殊变量
+
+							单双引号
+								双引号里可放置变量
+									 可以出现转义字符
+
+							 	拼接字符串
+							 		myName='陈梓林'
+							 		#双引号：
+
+								 		greeting="Hello,"$myName"!" //输出为 Hello,陈梓林!
+								 		greeting="Hello,${myName}!" //输出为 Hello,陈梓林！
+							 		#单引号：							 			
+								 		greeting='Hello,'$myName'"!' //输出为 Hello,陈梓林！
+								 		greeting='Hello,${myName}!' //输出为 Hello,${myName}！
+
+						 		字符串操作：	
+					 				str="this is a string"
+
+						 			获取字符串长度：
+						 				echo ${#str}#输出16
+					 				提取字符串：
+					 					echo ${str:1:5} #从第二个字符提取5个字符
+				 							 ${str:7} #从第8个字符提取到最后
+
+					 					几种方法：
+					 						#*
+					 							#*:${str#*字符}     //删除字符及字符左边所有字符
+					 							##*:${str##*字符}   //删除最右边字符及字符左边所有字符
+				 							%*
+				 								%*:${str%字符*}     //删除字符及字符右边所有字符
+				 								%%*：${str%%字符*}  //删除最右边字符及字符右边所有字符
+			 								：
+			 									${str:0-7:3}       //0-7表示从右边算起第7个，往右提取3个，
+			 									${str:0-7}        //从右边算起第7个,一直往右提取到结束
+
+
+
+		 								#字符:${str#*字符}中字符的意思是指定某个字符串的字符为标识，可以 是字符串中任一或。从这个字符开始删除
+
+				 					查找字符:
+				 						echo `expr index "&str" i` #输出3
+				 							寻找i的位置索引。`是反引号，英文状态下数字1左边的键
+
+						数组：
+							一维数组:
+								语法： 数组=(值 值...)
+								arr_name=('陈梓林' 'Edward' '琉星')
+								单独赋值：arr_name[0]='陈梓林'
+
+								读取数组元素语法：
+									${arr_name[0]}
+									@索引可以获取数组所有元素 ${arr_name[@]}#获取所有元素
+									${#arr_name[@]}  #获取数组元素个数
+												*
+									${#arr_name[0]}  #获取单个元素的长度
+
+
+
+
+
+
+						注释：
+							以#开头的就是注释，会被解释器忽略
+							#这是一个注释
+							多行注释：
+								:<<EOF
+									注释内容...
+								EOF
+
+
+
+
+
+						传参：
+
+
+
+lnux 错误:
+	E325：
+		解决办法：还原文件  vim -r fileName   删除副本  rm -f 副本文件

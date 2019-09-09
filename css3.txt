@@ -1,0 +1,43 @@
+CSS3:
+	css3属性浏览器兼容 -webkit-  兼容Safari Chrome   -moz-兼容Firefox
+	2D/3D转换：
+		transform(变换):   
+			属性的值为方法：
+				translate/3d():2D/3D转换
+				rotate():元素顺时针根据给定的角度转动，负值则逆时针转动
+
+				3D变换方法：
+					rotateX() 元素围绕其X轴以给定的度数旋转
+					rotateY() 元素围绕其Y轴以给定的度数旋转
+
+
+	过渡：
+		transition(过渡):为元素从一种样式向另一种样式过渡添加效果 元素从一种样式逐渐改变为另一种样式
+			语法: transition: width 2s;
+
+			属性值，必须规定两项内容：
+									将效果添加到那个属性上
+									规定效果的时长     未规定时长 默认为 0，无效果
+
+			效果开始于规定的属性值发生改变时
+			多项样式使用逗号隔开
+
+			所有过渡属性：
+				transition:简写属性，可设置所有属性
+				transition-property: 设置过渡应用的属性
+				transition-duratrtion: 设置过渡的时间，默认值 0
+				transition-timing-funtion: 设置过渡效果的时间线，默认值 ease 不可继承
+					linear   以相同的速度开始至结束过渡效果
+					ease     慢速开始，然后变快，然后慢速结束
+						ease-in   规定以慢速开始
+						ease-out  规定以慢速结束
+						ease-in-out   规定以慢速开始和慢速结束
+						cubic-bezier(n,n,n,n)   方法中自己定义 参数值为0~1
+
+
+	动画：
+		@keyfames规则
+
+
+	阴影：
+		box-shadow： 

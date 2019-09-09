@@ -1,0 +1,27 @@
+git: 分布式版本控制系统
+	
+	没有消息就是好消息
+
+	command:
+		creat repository: git init (将当前目录创建为可管理的git 版本库)
+		add at repository: git add "file name"
+		look change: git status(查看当前仓库改动)
+
+	添加github的远程仓库：
+		登录github
+		右上角找到creat a new repository
+
+
+
+	Git 分支：	
+		始终有一个你正处于的分支，通常是master
+		你可以自定义分支，并切换到它
+		分支之间互相独立
+
+		(p:相当于平行宇宙，每个宇宙都有一个独立的文件)
+		指令请参详git_command
+
+
+		分支合并:
+			如果在一个分支中的文件修改，则在另一分支不可见
+			
