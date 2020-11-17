@@ -24,4 +24,28 @@ git: 分布式版本控制系统
 
 		分支合并:
 			如果在一个分支中的文件修改，则在另一分支不可见
+	
+	
+	git  command
+		
+		本地：
+			创建git仓库：git init
+				运行命令时的目录将成为git管理的仓库，目录
+				
+			添加到暂存区：git add filename
+			提交暂存区更改到仓库：git commit -m "message"
 			
+			查看提交日志：git log
+			
+			版本回退：git reset HEAD^ / git reset commit版本号
+			
+			本地仓库推送到服务器：
+				git push -u origin master
+			
+			
+			
+			
+			概念：
+				工作区
+				暂存区
+				仓库
