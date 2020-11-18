@@ -1,0 +1,16 @@
+安装处理excel的库
+
+    Openpyxl
+
+        Workbook  Sheet  Cell
+
+在·
+        操作：
+            
+
+
+
+数据类型
+    整数，浮点数，字符串
+    
+    变量    
