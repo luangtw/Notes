@@ -1,0 +1,42 @@
+微信小程序
+
+	申领小程序步骤：
+		1、注册小程序账号，获得管理后台(一个邮箱注册一个小程序，后台管理小程序的开发运营等)
+		2、在开发者工具新建项目(使用在后台申请APPID)
+	
+	开发-上传-审核-发布	
+	
+	小程序开发协同
+	
+	
+	小程序开发指南
+	
+		JSSDK
+		
+	微信开发者文档使用：
+		API文档	'https://developers.weixin.qq.com/miniprogram/dev/api/'
+			微信的API可以轻松调起微信提供的能力，如获取用户信息，本地存储，支付功能等。
+	
+
+小程序开发基础知识：
+	小程序配置
+		小程序配置项分为全局配置，单个页面的配置，以及其他的sitemap配置等
+		编写小程序的配置项可以配置小程序的各种默认设置。
+		根目录的app.json用来作全局配置。
+		每个页面的.json文件用来配置各个页面自己配置项
+	
+	
+uni-app开发踩坑：
+	图片处理指南，文本处理指南
+	
+	<image>  
+			mode 图片处理模式  使用aspectFit 可以完整显示图片，使用aspectFill，不完整显示图片
+			
+			缩放模式：根据image设置的大小对图片进行缩放
+			
+			裁剪模式：不缩放图片，只显示图片的部分位置
+	
+	文本处理：	文本溢出省略text-overflow: ellipsis;需加上overflow: hidden;white-space: nowrap;实现
+				多行文本溢出省略处理，使用text-overflow: ellipsis;overflow: hidden;-webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 2;
+	
+	
