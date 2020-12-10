@@ -1,0 +1,8 @@
+xampp 集成的建站软件，用它来运行前后端不分离项目。把整个项目放在xampp软件的htdocs目录，然后打开软件，运行apache、mySql服务，安装设置的端口访问网站
+
+redis：REmote DIctionary Server(Redis) 是一个由Salvatore Sanfilippo写的key-value存储系统。
+
+前后端不分离，后端代码也在这个项目
+
+
+UEditor 百度web前端研发部门开发的富文本编辑器。

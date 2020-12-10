@@ -1,0 +1,3 @@
+windows powershell command:
+	setx PATH 设置环境变量 -m 表示系统变量
+		%PATH%表示当前的环境变量,添加一个变量可以使用 setx PATH "%PATH%;添加的变量" 这种拼接的方式

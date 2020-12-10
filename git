@@ -39,19 +39,15 @@ git: 分布式版本控制系统
 			
 			版本回退：git reset HEAD^ / git reset commit版本号
 			
-			本地仓库推送到服务器：
+			本地仓库推送到远程库：
 				git push -u origin master
 			
-			
-			
-			
-			概念：
-				工作区
-				暂存区
-				仓库
-				
-				
-				
+			从远程库更新
+				git pull origin master
+				git pull origin master:[master]		指定拉取到分支
+									--allow-unrelated-histories 强行合并两个不同的项目  没有一个共同的commit
+									
+				git fetch					
 				
 				
 				
