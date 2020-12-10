@@ -39,4 +39,35 @@ uni-app开发踩坑：
 	文本处理：	文本溢出省略text-overflow: ellipsis;需加上overflow: hidden;white-space: nowrap;实现
 				多行文本溢出省略处理，使用text-overflow: ellipsis;overflow: hidden;-webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 2;
 	
-	
+	获取元素信息
+
+        uni-createSelectorQuery方法，用于创建一个元素选择器 
+        在自定义组件模式下还需指定选择范围，通常为某个组件。使用in() 方法
+        语法为：
+            uni.createSelectorQuery.in(组件)      返回一个选择器，用于选择范围内的元素
+
+            返回的选择器拥有select(选择器) 方法 ，选择第一个匹配选择器的元素
+                该方法支持以下选择器：
+                ID选择器：                          #the-id
+                class选择器（可以连续指定多个)：      .a-class.another-class
+                子元素选择器：                      .the-parent > .the-child
+                后代选择器：                        .the-ancestor .the-descendant
+                跨自定义组件的后代选择器：           .the-ancestor >>> .the-descendant
+                多选择器的并集：#a-node,            .some-other-nodes
+
+            selectAll(选择器)                   选择所有匹配选择器的元素
+
+            selectViewport()                    返回一个 NodeRef 对象 用于获取显示区域的尺寸、滚动位置等信息
+                                                NodeRef 对象：
+                                                    .fields(参数对象, 回调)      获取节点信息        参数对象是传入的节点的相关的信息配置 回调的参数是返回的节点信息
+                                                        参数对象具体配置详看 uni-app官方文档 
+
+                                                    .boundingClientRect(回调)    给节点添加布局位置查询请求，回调的参数返回节点的布局信息
+
+                                                    .scrollOffset(回调)          添加节点的滚动位置查询请求，回调返回滚动位置信息
+
+                                                    .context(回调)
+
+                                                    .node(回调)   
+
+            exec(回调)                          执行所有请求，按次序构成数组，回调的第一个参数返回
