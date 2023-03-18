@@ -44,3 +44,24 @@ SQL ：
 				SELECT 语句：
 					select name,country from Websites         //从Websites中读取name,country 列的数据
 					SELECT*FROM  //选取所有列
+
+					
+
+
+  sql(mysql)
+            数据库数据类型 键 字段 空格分隔 逗号分隔  表 行和列 字段定义一个列 每条数据定义一个行 
+            设计数据库
+            用户权限
+            数据库数据基本操作
+
+            创建数据库: CREATE DATABASE 数据库名字  参数 IF NOT EXISTS 数据库不存在创建 DEFAULT CHARACTER SET 字符集 设定字符集 DEFAULT COLLATE 校对规则 设定字符校对规则
+            删除数据库: DROP DATABASE 数据库名字
+            创建数据表: CREATE TABLE 数据库名字 ([表定义选项等])
+            删除数据表：DROP TABLE 表1，[表2，表3...] 参数 IF EXISTS 数据表存在删除
+            
+
+            插入数据：INSERT INTO 表名() VALUES ()
+            查询数据：SELECT 字段 FROM 表名 [WHERE] [GROUP BY]  [HAVING]....
+            改
+            删除数据: DELETE FROM 表名 [WHERE]  [GROUP BY]...
+            清空表数据：TRUNCATE TABLE 表名

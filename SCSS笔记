@@ -1,2 +1,5 @@
 SCSS笔记：
 	深度选择器
+	CSS使用：>>>
+	scss使用：::v-deep
+	vue-cli3.0以下可以使用:/deep/
